@@ -20,3 +20,14 @@ build_script:
 artifacts:
   - path: libzmq4.zip
     name: libzmq4
+
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: XGGnX5AXrVFxrS2Z2tbByWR+pA+ExMjZZmCyMqb7rPFEgSJjUF6PuYFl6M5uzl1r 
+  artifact: libzmq4.zip
+  draft: false
+  prerelease: false
+  on:
+    branch: master                 # release from master branch only
+    appveyor_repo_tag: true        # deploy on tag push only
