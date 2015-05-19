@@ -13,7 +13,7 @@ before_build:
   - cmake.exe -G "Visual Studio 12" .. -DWITH_SODIUM=ON -DSODIUM_ROOT_DIR="%APPVEYOR_BUILD_FOLDER%\libsodium" -DCMAKE_INSTALL_PREFIX="%APPVEYOR_BUILD_FOLDER%/binaries" -DBUILD_TESTING=OFF
 
 build_script:
-  - cmake.exe --build "%APPVEYOR_BUILD_FOLDER%\build" --target install
+  - cmake.exe --build "%APPVEYOR_BUILD_FOLDER%\build" --target install --config Release
   - 7z a libzmq4.zip "%APPVEYOR_BUILD_FOLDER%\binaries\*"
   - appveyor PushArtifact libzmq4.zip
 
