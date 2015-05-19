@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 2.8)
 project(ZeroMQ)
 
 option(WITH_OPENPGM "Build with support for OpenPGM" OFF)
+option(WITH_SODIUM "Build with support for libsodium" ON)
 
 if(APPLE)
   option(ZMQ_BUILD_FRAMEWORK "Build as OS X framework" ON)
@@ -404,6 +405,13 @@ if(WITH_OPENPGM)
   link_directories(${OPENPGM_LIBRARY_DIRS})
   set(OPTIONAL_LIBRARIES ${OPENPGM_LIBRARIES})
 endif(WITH_OPENPGM)
+
+if(WITH_SODIUM)
+  find_package(Sodium REQUIRED)
+  add_definitions(-DHAVE_LIBSODIUM)
+  include_directories(${SODIUM_INCLUDE_DIR})
+  set(OPTIONAL_LIBRARIES ${OPTIONAL_LIBRARIES} ${SODIUM_LIBRARY})
+endif(WITH_SODIUM)
 
 #-----------------------------------------------------------------------------
 # source generators

@@ -6,17 +6,17 @@
 # A2X_EXECUTABLE - the full path to a2x
 # A2X_FOUND - If false, don't attempt to use a2x.
 
-find_program(ASCIIDOC_EXECUTABLE asciidoc asciidoc.py
-             PATHS "$ENV{ASCIIDOC_ROOT}"
-                   "$ENV{PROGRAMW6432}/asciidoc"
-                   "$ENV{PROGRAMFILES}/asciidoc"
-                   "$ENV{PROGRAMFILES(X86)}/asciidoc")
+#find_program(ASCIIDOC_EXECUTABLE asciidoc asciidoc.py
+             #PATHS "$ENV{ASCIIDOC_ROOT}"
+                   #"$ENV{PROGRAMW6432}/asciidoc"
+                   #"$ENV{PROGRAMFILES}/asciidoc"
+                   #"$ENV{PROGRAMFILES(X86)}/asciidoc")
 
-find_program(A2X_EXECUTABLE a2x
-             PATHS "$ENV{ASCIIDOC_ROOT}"
-                   "$ENV{PROGRAMW6432}/asciidoc"
-                   "$ENV{PROGRAMFILES}/asciidoc"
-                   "$ENV{PROGRAMFILES(X86)}/asciidoc")
+#find_program(A2X_EXECUTABLE a2x
+             #PATHS "$ENV{ASCIIDOC_ROOT}"
+                   #"$ENV{PROGRAMW6432}/asciidoc"
+                   #"$ENV{PROGRAMFILES}/asciidoc"
+                   #"$ENV{PROGRAMFILES(X86)}/asciidoc")
 
 
 include(FindPackageHandleStandardArgs)
