@@ -1,7 +1,5 @@
 version: 1.0.{build}
 
-skip_tags: false
-
 branches:
   only:
     - master
@@ -24,6 +22,7 @@ artifacts:
     name: libzmq4
 
 deploy:
+  release: libzmq4x-v$(appveyor_build_version)
   provider: GitHub
   auth_token:
     secure: XGGnX5AXrVFxrS2Z2tbByWR+pA+ExMjZZmCyMqb7rPFEgSJjUF6PuYFl6M5uzl1r 
@@ -32,4 +31,3 @@ deploy:
   prerelease: false
   on:
     branch: master                 # release from master branch only
-    appveyor_repo_tag: true        # deploy on tag push only
