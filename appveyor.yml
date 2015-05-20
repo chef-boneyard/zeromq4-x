@@ -16,7 +16,7 @@ before_build:
 
 build_script:
   - cmake.exe --build "%APPVEYOR_BUILD_FOLDER%\build" --target install --config Release
-  - cp "%APPVEYOR_BUILD_FOLDER%\libsodium\Win32\Release\v120\dynamic\*.dll" "%APPVEYOR_BUILD_FOLDER%\binaries\bin\"
+  - cp "%APPVEYOR_BUILD_FOLDER%\Win32\Release\v120\dynamic\libsodium.dll" "%APPVEYOR_BUILD_FOLDER\binaries\bin\"
   - 7z a libzmq4.zip "%APPVEYOR_BUILD_FOLDER%\binaries\*"
   - appveyor PushArtifact libzmq4.zip
 
