@@ -8,28 +8,28 @@ branches:
 
 before_build:
   - mkdir "%APPVEYOR_BUILD_FOLDER%\build"
-  - mkdir "%APPVEYOR_BUILD_FOLDER%\binaries"
+  - mkdir "%APPVEYOR_BUILD_FOLDER%\libzmq4x-windows"
   - ps: wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.3-msvc.zip -OutFile libsodium.zip
   - 7z x "%APPVEYOR_BUILD_FOLDER%\libsodium.zip" -o"%APPVEYOR_BUILD_FOLDER%\libsodium"
   - cd "build"
-  - cmake.exe -G "Visual Studio 12" .. -DWITH_SODIUM=ON -DSODIUM_ROOT_DIR="%APPVEYOR_BUILD_FOLDER%\libsodium" -DCMAKE_INSTALL_PREFIX="%APPVEYOR_BUILD_FOLDER%/binaries" -DBUILD_TESTING=OFF
+  - cmake.exe -G "Visual Studio 12" .. -DWITH_SODIUM=ON -DSODIUM_ROOT_DIR="%APPVEYOR_BUILD_FOLDER%\libsodium" -DCMAKE_INSTALL_PREFIX="%APPVEYOR_BUILD_FOLDER%/libzmq4x-windows" -DBUILD_TESTING=OFF
 
 build_script:
   - cmake.exe --build "%APPVEYOR_BUILD_FOLDER%\build" --target install --config Release
-  - cp "%APPVEYOR_BUILD_FOLDER%\libsodium\Win32\Release\v120\dynamic\libsodium.dll" "%APPVEYOR_BUILD_FOLDER%\binaries\bin\libsodium.dll"
-  - 7z a libzmq4.zip "%APPVEYOR_BUILD_FOLDER%\binaries\*"
-  - appveyor PushArtifact libzmq4.zip
+  - cp "%APPVEYOR_BUILD_FOLDER%\libsodium\Win32\Release\v120\dynamic\libsodium.dll" "%APPVEYOR_BUILD_FOLDER%\libzmq4x-windows\bin\libsodium.dll"
+  - 7z a libzmq4x-windows.zip "%APPVEYOR_BUILD_FOLDER%\libzmq4x-windows\"
+  - appveyor PushArtifact libzmq4x-windows.zip
 
 artifacts:
-  - path: libzmq4.zip
+  - path: libzmq4-windows.zip
     name: libzmq4
 
 deploy:
-  release: libzmq4x-v$(appveyor_build_version)
+  release: libzmq4x-$(appveyor_build_version)
   provider: GitHub
   auth_token:
     secure: XGGnX5AXrVFxrS2Z2tbByWR+pA+ExMjZZmCyMqb7rPFEgSJjUF6PuYFl6M5uzl1r 
-  artifact: libzmq4.zip
+  artifact: libzmq4x-windows.zip
   draft: false
   prerelease: false
   on:
